@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Shop</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="css/shop-homepage.css" rel="stylesheet">
+  <link href="css/shop.css" rel="stylesheet">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="images/icons8-book-shelf-64.png">
+
+</head>
+
+<body>
+
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark ">
+    <div class="container-fluid">
+
+      <a class="navbar-brand" href="index.html"><img src="/images/Bookshop-512.webp" alt="" width="50px"> BlackBooks</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+        <ul class="navbar-nav ml-auto bar1">
+
+          <li class="nav-item ">
+            <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="About.html">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="Books.html">Books</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="Products.html" id="navbarDropdown" role="button"
+              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Admin
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="OrderAdmin.html">Edit Orders</a>
+              <a class="dropdown-item" href="EditBooks.html">Edit Books</a>
+              <a class="dropdown-item" href="EditAuthors.html">Edit Authors</a>
+              <a class="dropdown-item" href="EditCategorie.html">Edit Categorie</a>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link " href="Contact.html">Contact</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link " href="MyProfile.html">MyProfile</a>
+          </li>
+          <li class="nav-item">
+            <a id="login" class="nav-link " href="Login.html">Login</a>
+          </li>
+          <li class="nav-item">
+            <a type="button" id="logout_btn" class="btn btn-dark btngb">Logout</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="Shop.html"><img src="images/7.jpg" alt="shopping cart img" style="width:60px"></a>
+          </li>
+        </ul>
+        <div class="search">
+          <form class="form-inline my-2 my-lg-0  searchinner ">
+            <input id="search_bar" class="form-control mr-sm-2 " type="search" placeholder="Search" aria-label="Search"
+              aria-haspopup="true" aria-expanded="false">
+            <div class="dropdown-menu searchh" aria-labelledby="search_bar">
+            </div>
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Page Content -->
+  <script src="https://use.fontawesome.com/c560c025cf.js"></script>
+  <div class="contact">
+    <div class="card shopping-cart">
+      <div class="card-header bg-dark text-light">
+        <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+        Shopping cart
+        <a href="Books.html" class="btn btn-outline-info btn-sm pull-right">Continue shopping</a>
+        <div class="clearfix"></div>
+      </div>
+      <div id="books" class="card-body">
+      </div>
+      <div class="card-footer" style="height: 80px;">
+        <div class="pull-right price1">
+          <button id="check2" class="btn btn-warning pull-right" disabled>Pay</button>
+          <div>
+            <h6 id="tp">Total price: </h6>
+            <p id="total_price"><b></b></p>
+          </div>
+          <button id="check" class="btn btn-success">Submit</button>
+        </div>
+        <div id="im_d">
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Footer -->
+  <footer class="py-5 bg-dark">
+    <div class="container">
+      <p class="m-0 text-center text-white">Copyright &copy; Group Project Website 2020</p>
+    </div>
+    <!-- /.container -->
+  </footer>
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="js/jquery.min.js"></script>
+  <script src="js/bootstrap.bundle.min.js"></script>
+  <script src="js/general_js.js"></script>
+  <script src="js/shop.js"></script>
+
+</body>
+
+</html>

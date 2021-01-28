@@ -1,0 +1,383 @@
+/*!
+ * Start Bootstrap - Shop Homepage (https://startbootstrap.com/template/shop-homepage)
+ * Copyright 2013-2020 Start Bootstrap
+ * Licensed under MIT (https://github.com/StartBootstrap/startbootstrap-shop-homepage/blob/master/LICENSE)
+ */
+ body {
+}
+.bar1 {
+margin-top:9px;
+
+}
+.search {
+color:aliceblue;
+background:#343a40;
+}
+.searchinner{
+  margin-left: 100px;
+  margin-bottom: 5px;
+}
+.slidebar{
+  position: relative;
+    display: block;
+    padding: 0;
+    background-color: #fff;
+}
+.price{
+  color:rgb(38, 125, 255);
+}
+.contact{
+  padding: 4%;
+  height: 900px;
+}
+.col-md-3{
+  background: #ff9b00;
+  padding: 4%;
+  border-top-left-radius: 0.5rem;
+  border-bottom-left-radius: 0.5rem;
+}
+.contact-info{
+  margin-top:10px;
+}
+.contact-info img{
+  margin-bottom: 15%;
+}
+.contact-info h2{
+  margin-bottom: 10%;
+}
+.col-md-9{
+  background: #fff;
+  padding: 3%;
+  border-top-right-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
+}
+.contact-form label{
+  font-weight:600;
+}
+.contact-form button{
+  background: #25274d;
+  color: #fff;
+  font-weight: 600;
+  width: 25%;
+}
+.contact-form button:focus{
+  box-shadow:none;
+}
+
+.login{
+  /* background-image: url("https://wallpapercave.com/wp/VyuQp6b.jpg"); */
+  background-image: url("../images/272180.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 100%;
+  font-family: 'Numans', sans-serif;
+  margin: 0px;
+  padding-bottom: 100px;
+  padding-top: 100px;
+  }
+  
+  .container{
+  height: 100%;
+  align-content: center;
+  }
+  
+  .card1{
+  height: 370px;
+  margin-top: auto;
+  margin-bottom: auto;
+  width: 400px;
+  background-color: rgba(0,0,0,0.5) !important;
+  }
+  
+  .social_icon span{
+  font-size: 60px;
+  margin-left: 10px;
+  color: #FFC312;
+  }
+  
+  .social_icon span:hover{
+  color: white;
+  cursor: pointer;
+  }
+  
+  .card-header h3{
+  color: white;
+  }
+  
+  .social_icon{
+  position: absolute;
+  right: 20px;
+  top: -45px;
+  }
+  
+  .input-group-prepend span{
+  width: 50px;
+  background-color: #FFC312;
+  color: black;
+  border:0 !important;
+  }
+  
+  input:focus{
+  outline: 0 0 0 0  !important;
+  box-shadow: 0 0 0 0 !important;
+  
+  }
+  
+  .remember{
+  color: white;
+  }
+  
+  .remember input
+  {
+  width: 20px;
+  height: 20px;
+  margin-left: 15px;
+  margin-right: 5px;
+  }
+
+  
+  .login_btn{
+  color: black;
+  background-color: #FFC312;
+  width: 100px;
+  }
+  
+  .login_btn:hover{
+  color: black;
+  background-color: white;
+  }
+  
+  .links{
+  color: white;
+  }
+  
+  .links a{
+  margin-left: 4px;
+  }
+
+/* vathmologia */
+  .rating {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center
+}
+
+.rating>input {
+    display: none
+}
+
+.rating>label {
+    position: relative;
+    width: 1em;
+    color: #FFD600;
+    cursor: pointer
+}
+
+.rating>label::before {
+    content: "\2605";
+    position: absolute;
+    opacity: 0
+}
+
+.rating>label:hover:before,
+.rating>label:hover~label:before {
+    opacity: 1 !important
+}
+
+.rating>input:checked~label:before {
+    opacity: 1
+}
+
+.rating:hover>input:checked~label:before {
+    opacity: 0.4
+}
+
+.carousel1 {
+   text-align: center;
+   margin: 0 auto;
+}
+.btngb {
+  color: rgba(255,255,255,.5);
+  background-color: #343a40;
+  border-color:  #343a40;
+}
+
+
+
+/* reviews */
+.animated {
+  -webkit-transition: height 0.2s;
+  -moz-transition: height 0.2s;
+  transition: height 0.2s;
+}
+
+.stars
+{
+  margin: 20px 0;
+  font-size: 24px;
+  color: #d17581;
+}
+
+/* <3 */
+.small, small {
+  /* font-size: 80%; */
+  font-weight: 400;
+}
+
+.book{
+padding:30px
+}
+
+.textarea{
+  padding: 30px;
+  line-height: 3;
+  line-height: 1.5;
+
+  
+}
+/********************************MINE*****************************************/
+.book{
+padding:30px
+}
+
+.textarea{
+  padding: 30px;
+  line-height: 3;
+  line-height: 1.5;
+}
+
+.reviews{
+  margin-top: 30px;
+}
+
+.review-section {
+  width: 80%;
+  margin-top: 20px;
+  background-color: rgb(238, 238, 238);
+
+}  
+
+.review-section h6{
+  padding-left: 2px;
+  width: 100%;
+}
+
+/* .review-section h6 span{
+  text-align: right;
+} */
+
+.review-section p{
+  background-color: rgb(246, 250, 255);
+}
+
+card-text{
+  height: 50px;
+}
+
+.lepto{
+  width: 370px;
+  margin-top: 30px;
+  padding-left: 2px;
+  background-color: rgb(238, 238, 238);
+}
+
+.card-text2{
+  height: 60px;
+  margin-bottom: 10px;
+}
+
+.card-body{
+  overflow: auto;
+  background-color: transparent;
+}
+
+/* .fas {
+  margin-top: 10px;
+  border:6px rgb(44, 136, 255) solid;
+} */
+
+.card-footer{
+  height: 50px;
+}
+
+.py-5 {
+  width: 100%;
+  margin-top: 950px;
+}
+
+.row {
+  color: rgb(66, 66, 66);
+}
+
+.addToCart{
+  text-align: center;
+  background-color: rgb(88, 135, 236);
+  height: 30px;
+  line-height: 30px;
+}
+
+.addToCart a{
+  color: white;
+  text-align: center;
+}
+
+.custom-control label{
+  display: block;
+}
+
+#sorting{
+  margin-top: 10px;
+}
+
+.card-link-secondary, .sendCart{
+  padding-right: 15px; 
+  display: block; 
+  text-decoration: none;
+}
+
+/* CSS ΓΙΑ ΤΟ SEARCH LIST---------------------------------*/
+
+.dropdown-menu.searchh{
+  left: 79.2%;
+  width: 204px;
+  overflow: hidden;
+}
+.s_text {
+  font-size: 12px;
+  color: rgb(160, 154, 154);
+}
+
+.rating{
+  position: absolute;
+  left:150px
+}
+
+#noneB{
+width: 200px;
+position: relative;
+}
+
+/*CHAT----------------------------------------------------*/
+#chat{
+  position:relative;
+  top: 100px;
+  border:2px #343a40 solid;
+  border-radius: 6px;
+}
+
+#im_dd{
+  position:relative;
+  left:400px;
+  width: 800px;
+  height: 60px;
+  background-color: #d0e2f5;
+  text-align: center;
+}
+
+.Upd,.Del,.CUpd,.CDel,.Updat,.Dele{
+  position:relative;
+  left:436px;
+  bottom:38px;
+  margin-right: 1px;
+}
+

@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>MyProfile</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="css/shop-homepage.css" rel="stylesheet">
+
+  <link rel="icon" type="image/png" href="images/icons8-book-shelf-64.png">
+
+</head>
+
+<body>
+
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark ">
+    <div class="container-fluid">
+
+      <a class="navbar-brand" href="index.html"><img src="/images/Bookshop-512.webp" alt="" width="50px"> BlackBooks</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+        <ul class="navbar-nav ml-auto bar1">
+
+          <li class="nav-item ">
+            <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="About.html">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="Books.html">Books</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="Products.html" id="navbarDropdown" role="button"
+              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Admin
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="OrderAdmin.html">Edit Orders</a>
+              <a class="dropdown-item" href="EditBooks.html">Edit Books</a>
+              <a class="dropdown-item" href="EditAuthors.html">Edit Authors</a>
+              <a class="dropdown-item" href="EditCategorie.html">Edit Categorie</a>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link " href="Contact.html">Contact</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link " href="MyProfile.html">MyProfile</a>
+          </li>
+          <li class="nav-item">
+            <a id="login" class="nav-link " href="Login.html">Login</a>
+          </li>
+          <li class="nav-item">
+            <a id="logout_btn" type="button" class="btn btn-dark btngb">Logout</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="Shop.html"><img src="images/7.jpg" alt="shopping cart img" style="width:60px"></a>
+          </li>
+        </ul>
+        <div class="search">
+          <form class="form-inline my-2 my-lg-0  searchinner ">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <div class="col-md-9 myprofile container">
+    <div class="card">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-12">
+            <h4 class="titlos1"></h4>
+            <hr>
+          </div>
+        </div>
+        <div class="row mprofile">
+          <div class="col-md-12">
+            <form class="sub">
+              <div class="first form-group row">
+              </div>
+
+              <div class="last form-group row">
+              </div>
+
+              <div class="name form-group row">
+              </div>
+
+
+              <div class="passw form-group row">
+              </div>
+
+              <div class="emai form-group row">
+              </div>
+
+              <div class="da form-group row">
+              </div>
+
+              <div class="tele form-group row">
+              </div>
+
+              <div class="countr form-group row">
+              </div>
+
+              <div class="wall form-group row">
+              </div>
+
+              <div class="ord form-group row">
+                <label class="col-4 col-form-label">Submited Orders</label>
+                <div class="col-8">
+                  <select id="sel_ord" value="" class="form-control here ct">
+                    <option id="empty" value="">Choose an Order</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <div class="offset-4 col-8">
+                  <button name="reset" type="reset" class="btn btn-warning">Clear</button>
+                  <button id="del" name="delete" type="button" class="btn btn-danger">Delete</button>
+                  <button id="su" type="button" class="btn btn-success">submit</button>
+                  <button id="check2" type="button" class="btn btn-warning pull-right">Pay</button>
+                </div>
+              </div>
+
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="im_dd">
+
+  </div>
+
+  <footer class="py-5 bg-dark">
+    <div class="container">
+      <p class="m-0 text-center text-white">Copyright &copy; Group Project Website 2020</p>
+    </div>
+    <!-- /.container -->
+  </footer>
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="js/jquery.min.js"></script>
+  <script src="js/bootstrap.bundle.min.js"></script>
+  <script src="js/MyProfile.js"></script>
+  <script src="/js/general_js.js"></script>
+
+
+</body>
+
+</html>

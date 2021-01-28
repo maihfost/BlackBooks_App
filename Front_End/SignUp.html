@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Login</title>
+    <link rel="icon" type="image/png" href="images/icons8-book-shelf-64.png">
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="css/shop-homepage.css" rel="stylesheet">
+    <link href="css/SignUp.css" rel="stylesheet">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="images/icons8-book-shelf-64.png">
+
+</head>
+
+<body>
+
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark ">
+        <div class="container-fluid">
+
+            <a class="navbar-brand" href="index.html"><img src="/images/Bookshop-512.webp" alt="" width="50px">
+                BlackBooks</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+                <ul class="navbar-nav ml-auto bar1">
+                    <li class="nav-item ">
+                        <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="About.html">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="Books.html">Books</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="Products.html" id="navbarDropdown" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Admin
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="OrderAdmin.html">Edit Orders</a>
+                            <a class="dropdown-item" href="EditBooks.html">Edit Books</a>
+                            <a class="dropdown-item" href="EditAuthors.html">Edit Authors</a>
+                            <a class="dropdown-item" href="EditCategorie.html">Edit Categorie</a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " href="Contact.html">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a id="myProfile" class="nav-link " href="MyProfile.html">MyProfile</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a id="login" class="nav-link " href="Login.html">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a id="logout_btn" type="button" class="btn btn-dark">Logout</a>
+                    </li>
+                    <li class="nav-item">
+                        <a id="cartImg" class="nav-link" href="Shop.html"><img src="images/7.jpg"
+                                alt="shopping cart img" style="width:60px"></a>
+                    </li>
+                </ul>
+                <div class="search">
+                    <form class="form-inline my-2 my-lg-0  searchinner ">
+                        <input id="search_bar" class="form-control mr-sm-2 " type="search" placeholder="Search"
+                            aria-label="Search" aria-haspopup="true" aria-expanded="false">
+                        <div class="dropdown-menu searchh" aria-labelledby="search_bar">
+                        </div>
+                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Content -->
+    <form>
+
+        <div class="login">
+            <div class="d-flex justify-content-center h-100">
+
+                <!-- Register DIV -->
+                <div class="card1">
+                    <div class="card-header">
+                        <h3>Sign Up</h3>
+
+                    </div>
+                    <div class="card-body">
+                        <form>
+                            <!-- Username -->
+                            <div class="label-form">
+                                <p>Username*</p>
+                            </div>
+                            <div class="input-group form-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                </div>
+                                <input id="user_n" type="text" class="form-control" required>
+                            </div>
+                            <!-- Password -->
+                            <div class="label-form">
+                                <p>Password*</p>
+                            </div>
+                            <div class="input-group form-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-key"></i></span>
+                                </div>
+                                <input id="user_p" type="password" class="form-control" required>
+                            </div>
+                            <!-- Email -->
+                            <div class="label-form">
+                                <p>Email*</p>
+                            </div>
+                            <div class="input-group form-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-key"></i></span>
+                                </div>
+                                <input id="user_email" type="email" class="form-control" required>
+                            </div>
+                            <!-- First Name -->
+                            <div class="label-form">
+                                <p>First Name*</p>
+                            </div>
+                            <div class="input-group form-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-key"></i></span>
+                                </div>
+                                <input id="user_firstname" type="text" class="form-control">
+                            </div>
+                            <!-- Last Name -->
+                            <div class="label-form">
+                                <p>Last Name*</p>
+                            </div>
+                            <div class="input-group form-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-key"></i></span>
+                                </div>
+                                <input id="user_lastname" type="text" class="form-control">
+                            </div>
+                            <!-- Date Of Birth-->
+                            <div class="label-form">
+                                <p>Date Of Birth</p>
+                            </div>
+                            <div class="input-group form-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-key"></i></span>
+                                </div>
+                                <input id="user_dob" type="date" class="form-control">
+                            </div>
+                            <!-- Country-->
+                            <div class="label-form">
+                                <p>Country</p>
+                            </div>
+                            <div class="input-group form-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-key"></i></span>
+                                </div>
+                                <input id="user_coun" type="text" class="form-control">
+                            </div>
+                            <!-- Telephone-->
+                            <div class="label-form">
+                                <p>Telephone</p>
+                            </div>
+                            <div class="input-group form-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-key"></i></span>
+                                </div>
+                                <input id="user_tel" type="text" class="form-control">
+                            </div>
+                            <!-- Digital Wallet-->
+                            <div class="label-form">
+                                <p>Digital Wallet*(€)</p>
+                            </div>
+                            <div class="input-group form-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-key"></i></span>
+                                </div>
+                                <input id="user_wallet" type="text" class="form-control">
+                            </div>
+                            <!-- Register Button -->
+                            <div class="form-group">
+                                <input id="register_btn" type="button" value="Register"
+                                    class="btn float-right login_btn">
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+
+
+
+
+
+                <!-- END REGISTER DIV -->
+            </div>
+        </div>
+
+    </form>
+    <!-- Footer -->
+    <footer class="py-5 bg-dark" style="margin-top: 0px">
+        <div class="container">
+            <p class="m-0 text-center text-white">Copyright &copy; Group Project Website 2020</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/blackshop.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="js/signup.js"></script>
+    <script src="js/general_js.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,59 @@
+.card1 {
+    height: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+    width: 800px;
+    background-color: rgba(0, 0, 0, 0.5) !important;
+}
+
+.card-body {
+    height:600px;
+}
+
+.input-group {
+    width: 500px;
+    left: 87.5px;
+    float:left;
+    position: unset;
+}
+
+.label-form{
+    width: 150px;
+    height: 38px;
+    text-align: center;
+    font-size: 15px;
+    color: white;
+    position: relative;
+    float:left;
+    margin-left: 20px;
+}
+
+.label-form p{
+    position: relative;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.input-group-prepend{
+    border-radius: 25px;
+}
+
+#register_btn{
+    float:unset!important;
+    position:relative;
+    left:280px;
+    width:300px;
+
+
+}
+
+input[type="date"] {
+    -webkit-align-items: center;
+    align-items: center;
+    text-align: center;
+    display: -webkit-inline-flex;
+    font-family: monospace;
+    overflow: hidden;
+    padding: 0;
+    -webkit-padding-start: 1px;
+}
