@@ -6,7 +6,7 @@ $(document).ready(function () {
       //send to cart
       var cartId = localStorage.getItem("cartId");
       var username = localStorage.getItem("username");
-      var myUrl = "http://localhost:8080/api/cart/addtocart/" + cartId + "/" + username + "/" + this.id + "/" + 1 ;
+      var myUrl = "http://localhost:8080/api/cart/addtocart/" + cartId + "/" + this.id + "/" + 1 ;
         $.ajax({
           type: "POST",
           url: myUrl,
@@ -24,13 +24,42 @@ $(document).ready(function () {
             if(xhr.status == 406){
               alert("Not enough books on store!");
             }
-            if(localStorage.getItem("username") == null) {
-                alert("Please sign in to add to cart!");
+            if(xhr.status == 401 || xhr.status == 400) {
+              logoutFun();
             }
         }
         });
       $("#shakeCart").remove();
     });
 
-   
+    //unauthorized auto logout
+    function logoutFun(){
+      var logoutUrl= "http://localhost:8080/api/home/signout";
+      // var username = localStorage.getItem("username");
+
+      $.ajax({
+          type:"DELETE",
+          url:logoutUrl,
+          dataType: "json",
+          headers: {
+                  "Referrer-Policy": "strict-origin-when-cross-origin",
+                  "Access-Control-Allow-Origin": "*",
+                  "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS, UPDATE",
+                  'Authorization' : localStorage.getItem("Authorization") ,
+                  'Accept': 'application/json',
+                  'Content-Type': 'application/json' },
+          // data: JSON.stringify({
+          //     userName : username
+          // }),
+          success:function(){
+              // alert("See you soon!");
+          },
+          error: function(){
+              alert("Please sign in to proceed!");
+          }
+      });
+      localStorage.removeItem("Authorization");
+      // localStorage.removeItem("username");
+      window.location.href = "Login.html";
+  }
 });

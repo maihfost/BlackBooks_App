@@ -7,7 +7,6 @@ function processForm(e) {
 
 var form = document.getElementById('myform');
 
-console.log(form)
 if (form.attachEvent) {
     form.attachEvent("submit", processForm);
 } else {

@@ -20,9 +20,8 @@ $(document).ready(function () {
     //add to cart function
     $(".sendCart").click(function () {
         var cartId = localStorage.getItem("cartId");
-        var username = localStorage.getItem("username");
         var bookId = this.id.toString().slice(4);
-        var myUrl = "http://localhost:8080/api/cart/addtocart/" + cartId + "/" + username + "/" + bookId + "/" + 1;
+        var myUrl = "http://localhost:8080/api/cart/addtocart/" + cartId + "/" + bookId + "/" + 1;
         $.ajax({
             type: "POST",
             url: myUrl,
@@ -41,8 +40,8 @@ $(document).ready(function () {
                 if (xhr.status == 406) {
                     alert("Not enough books on store!");
                 }
-                if (localStorage.getItem("username") == null) {
-                    alert("Please sign in to add to cart!");
+                if (xhr.status == 401 || xhr.status == 400) {
+                    logoutFun();
                 }
             }
         });
@@ -126,10 +125,9 @@ $(document).ready(function () {
 
     //send review
     $(".reviews").on("click", "#submit", function () {
-        var user = localStorage.getItem("username");
-        var revUrl = "http://localhost:8080/api/review/new/" + fbook + "/" + user;
+        var revUrl = "http://localhost:8080/api/review/new/" + fbook ;
         var comment = $("#comment").val();
-        if (comment != null && user != null) {
+        if (comment != null) {
             $.ajax({
                 url: revUrl,
                 type: "POST",
@@ -149,7 +147,9 @@ $(document).ready(function () {
                     location.reload();
                 },
                 error: function () {
-                    location.reload();
+                    if (xhr.status == 401) {
+                        logoutFun();
+                    }
                 }
             });
         } else {
@@ -158,5 +158,35 @@ $(document).ready(function () {
         // 
     });
 
+    //unauthorized auto logout
+    function logoutFun() {
+        var logoutUrl = "http://localhost:8080/api/home/signout";
+        // var username = localStorage.getItem("username");
 
+        $.ajax({
+            type: "DELETE",
+            url: logoutUrl,
+            dataType: "json",
+            headers: {
+                "Referrer-Policy": "strict-origin-when-cross-origin",
+                "Access-Control-Allow-Origin": "*",
+                "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS, UPDATE",
+                'Authorization': localStorage.getItem("Authorization"),
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            // data: JSON.stringify({
+            //     userName : username
+            // }),
+            success: function () {
+                // alert("See you soon!");
+            },
+            error: function () {
+                alert("Please sign in to proceed!");
+            }
+        });
+        localStorage.removeItem("Authorization");
+        // localStorage.removeItem("username");
+        window.location.href = "Login.html";
+    }
 })

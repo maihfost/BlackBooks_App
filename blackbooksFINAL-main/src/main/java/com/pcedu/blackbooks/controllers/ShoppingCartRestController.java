@@ -97,12 +97,12 @@ public class ShoppingCartRestController {
     
     @Transactional
     @CrossOrigin
-    @PostMapping("/addtocart/{cartId}/{username}/{bookId}/{quantity}")
+    @PostMapping("/addtocart/{cartId}/{bookId}/{quantity}")
     @PreAuthorize("hasAuthority('user')")
-    public ResponseEntity addItemToCart(@PathVariable int bookId, @PathVariable int quantity, @PathVariable  int cartId, @PathVariable String username){
+    public ResponseEntity addItemToCart(@PathVariable int bookId, @PathVariable int quantity, @PathVariable  int cartId){
         Book book = bookService.findById(bookId);
         if(book.getStoreQuantity() >= quantity){
-            if(cartId == 0) cartId = cartFill(username);
+            if(cartId == 0) cartId = cartFill(SecurityContextHolder.getContext().getAuthentication().getName());
             return(detailFill(book, cartId, quantity));
         }
         return(new ResponseEntity( HttpStatus.NOT_ACCEPTABLE));
@@ -170,10 +170,10 @@ public class ShoppingCartRestController {
         
     @Transactional
     @CrossOrigin
-    @PostMapping("/submitorder/{username}/{cartId}")
+    @PostMapping("/submitorder/{cartId}")
     @PreAuthorize("hasAuthority('user')")
-    public ResponseEntity submitOrder(@PathVariable String username, @PathVariable  int cartId){
-//        UserDetailsImpl userDetails = (UserDetailsImpl) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    public ResponseEntity submitOrder(@PathVariable  int cartId){
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
         if(username != null){
             ShoppingCart cart = cartService.findById(cartId);
             //check if user's wallet has enough money

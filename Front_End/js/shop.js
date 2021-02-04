@@ -3,7 +3,6 @@ $(document).ready(function () {
     //GET CART ID
 
     var cart_id = localStorage.getItem("cartId");
-    var username = localStorage.getItem("username");
     var myUrl2 = "http://localhost:8080/api/cartdetail/all/shoppingcart/" + cart_id;
     $.ajax(
         {
@@ -17,6 +16,11 @@ $(document).ready(function () {
                 'Authorization': localStorage.getItem("Authorization"),
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
+            },
+            error: function(xhr){
+                if(xhr.status == 401) {
+                    logoutFun();
+                  }
             }
         }
     ).then(function (order_details) {
@@ -33,6 +37,11 @@ $(document).ready(function () {
                         'Authorization': localStorage.getItem("Authorization"),
                         'Accept': 'application/json',
                         'Content-Type': 'application/json'
+                    },
+                    error: function(xhr){
+                        if(xhr.status == 401) {
+                            logoutFun();
+                          }
                     }
                 }
             ).then(function (book) {
@@ -83,6 +92,11 @@ $(document).ready(function () {
                             'Authorization': localStorage.getItem("Authorization"),
                             'Accept': 'application/json',
                             'Content-Type': 'application/json'
+                        },
+                        error: function(xhr){
+                            if(xhr.status == 401) {
+                                logoutFun();
+                              }
                         }
                     }
                 ).then(function (order) {
@@ -98,7 +112,7 @@ $(document).ready(function () {
     // SUBMIT ORDER
     $("#check").click(function () {
 
-        var myUrl5 = "http://localhost:8080/api/cart/submitorder/" + username + "/" + cart_id;
+        var myUrl5 = "http://localhost:8080/api/cart/submitorder/" + cart_id;
         $.ajax(
             {
                 type: "POST",
@@ -111,9 +125,12 @@ $(document).ready(function () {
                     "Accept": "application/json",
                     "Content-Type": "application/json"
                 },
-                error: function(xhr){
-                    if (xhr.status == 406){
+                error: function (xhr) {
+                    if (xhr.status == 406) {
                         alert("Your amount is not enough to place an order!");
+                    }
+                    if(xhr.status == 401) {
+                        logoutFun();
                     }
                 }
             });
@@ -126,7 +143,7 @@ $(document).ready(function () {
 
     $("#check2").click(function () {
 
-        var myUrl6 = "http://localhost:8080/api/payment/new/" + username + "/" + cart_id;
+        var myUrl6 = "http://localhost:8080/api/payment/new/" + cart_id;
         $.ajax(
             {
                 type: "POST",
@@ -141,12 +158,17 @@ $(document).ready(function () {
                 },
                 data: JSON.stringify(
                     cart_id
-                )
+                ),
+                error: function(xhr){
+                    if(xhr.status == 401) {
+                        logoutFun();
+                      }
+                }
             }).then(function (books) {
                 alert("Success Payment! Click to the link above to download your books");
                 $("#im_d").append('<p id="cl">Click to the above links to download your books!</p>')
-                $.each(books,function(i,book){
-                    $("#im_d").append('<a href = "data:image/png;base64,'+ book.image + '" id="download" download> |  ' + book.title+ '  |</a>');
+                $.each(books, function (i, book) {
+                    $("#im_d").append('<a href = "data:image/png;base64,' + book.image + '" id="download" download> |  ' + book.title + '  |</a>');
                     //Click here to Download your Books!
                 });
                 $("#tp").css("display", "none");
@@ -203,7 +225,12 @@ $(document).ready(function () {
 
                         quantity: quantity
 
-                    })
+                    }),
+                    error: function(xhr){
+                        if(xhr.status == 401) {
+                            logoutFun();
+                          }
+                    }
                 });
             alert("Updated");
             window.location.reload();
@@ -215,7 +242,7 @@ $(document).ready(function () {
     $("body").on("click", ".del", function () {
         var idd = this.id.toString().slice(4);
         var myUrl4 = "http://localhost:8080/api/cart/deletefromcart/" + idd;
-        
+
         $.ajax(
             {
                 type: "DELETE",
@@ -227,16 +254,52 @@ $(document).ready(function () {
                     "Authorization": localStorage.getItem("Authorization"),
                     "Accept": "application/json",
                     "Content-Type": "application/json"
+                },
+                error: function(xhr){
+                    if(xhr.status == 401) {
+                        logoutFun();
+                      }
                 }
             });
-           
+
         $("#div_" + idd).remove();
-        setTimeout(function(){
+        setTimeout(function () {
             window.location.reload();
-        },1000);
+        }, 1000);
 
 
     });
 
+    //unauthorized auto logout
+    function logoutFun() {
+        var logoutUrl = "http://localhost:8080/api/home/signout";
+        // var username = localStorage.getItem("username");
+
+        $.ajax({
+            type: "DELETE",
+            url: logoutUrl,
+            dataType: "json",
+            headers: {
+                "Referrer-Policy": "strict-origin-when-cross-origin",
+                "Access-Control-Allow-Origin": "*",
+                "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS, UPDATE",
+                'Authorization': localStorage.getItem("Authorization"),
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            // data: JSON.stringify({
+            //     userName : username
+            // }),
+            success: function () {
+                // alert("See you soon!");
+            },
+            error: function () {
+                alert("Please sign in to proceed!");
+            }
+        });
+        localStorage.removeItem("Authorization");
+        // localStorage.removeItem("username");
+        window.location.href = "Login.html";
+    }
 
 });

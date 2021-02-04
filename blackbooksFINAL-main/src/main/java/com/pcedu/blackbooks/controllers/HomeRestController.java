@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -44,10 +45,10 @@ public class HomeRestController {
     @CrossOrigin
     @DeleteMapping("/signout")
     @PreAuthorize("hasAuthority('user')")
-    public ResponseEntity signOut(@RequestBody UserDTO userDTO){
+    public ResponseEntity signOut(){
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
         //find user's last cart to delete if did not purchase order
-        List<ShoppingCart> carts = cartService.findAllByUserDesc(userService.findByUserName(userDTO.getUserName()).getId());
-       
+        List<ShoppingCart> carts = cartService.findAllByUserDesc(userService.findByUserName(username).getId());
         //if he didn't sumbit order date is null!
         if(carts.get(0).getDateTime() == null){
              // find details with cartId carts.get(0)

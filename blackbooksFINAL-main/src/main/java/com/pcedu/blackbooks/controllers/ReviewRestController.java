@@ -87,10 +87,10 @@ public class ReviewRestController {
     
     @Transactional 
     @CrossOrigin
-    @PostMapping("/new/{bookId}/{username}")
+    @PostMapping("/new/{bookId}")
     @PreAuthorize("hasAuthority('user')")
-    public ResponseEntity createNewReview(@RequestBody Review review, @PathVariable int bookId, @PathVariable String username){
-//        UserDetailsImpl userDetails = (UserDetailsImpl) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    public ResponseEntity createNewReview(@RequestBody Review review, @PathVariable int bookId){
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
         review.setUserId(userService.findByUserName(username));
         review.setBookId(bookService.findById(bookId));
         review.setReviewDatetime(new Date());

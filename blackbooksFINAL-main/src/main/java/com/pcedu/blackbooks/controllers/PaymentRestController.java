@@ -19,6 +19,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -86,10 +87,11 @@ public class PaymentRestController {
     
     @Transactional
     @CrossOrigin
-    @PostMapping("/new/{username}/{cartId}")
+    @PostMapping("/new/{cartId}")
     @PreAuthorize("hasAuthority('user')")
-    public ResponseEntity createNewPayment(@PathVariable int cartId, @PathVariable String username){
+    public ResponseEntity createNewPayment(@PathVariable int cartId){
         if(!shoppingCartService.findById(cartId).getIsPaid()){
+            String username = SecurityContextHolder.getContext().getAuthentication().getName();
             Payment payment = newPayment(cartId);
             updateCart(payment);
             updateUser(username, payment);

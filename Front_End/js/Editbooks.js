@@ -54,6 +54,11 @@ $(document).ready(function () {
       'Authorization': localStorage.getItem("Authorization"),
       'Accept': 'application/json',
       'Content-Type': 'application/json'
+    },
+    error: function(xhr){
+      if(xhr.status == 401) {
+        logoutFun();
+      }
     }
   }
   ).then(
@@ -117,7 +122,7 @@ $(document).ready(function () {
     var desc1 = $("#desc").val();
     var repr = $("#rg").val();
     var stoQ = $("#st").val();
-    var totR= $("#tr").val();
+    var totR = $("#tr").val();
     var myUrl70 = "http://localhost:8080/api/book/update/" + idd;
     $.ajax(
       {
@@ -134,27 +139,32 @@ $(document).ready(function () {
         data: JSON.stringify({
           title: title1,
           isbn: isbn1,
-          noofpages:numofpage,
-          description:desc1,
-          regularPrice:repr,
-          storeQuantity:stoQ,
-          totalRating:totR
+          noofpages: numofpage,
+          description: desc1,
+          regularPrice: repr,
+          storeQuantity: stoQ,
+          totalRating: totR
         }),
         success: function () {
           // window.location.reload();
+        },
+        error: function(xhr){
+          if(xhr.status == 401) {
+            logoutFun();
+          }
         }
       });
     alert("Updated");
 
   });
 
-   //---------------------------------------------------
+  //---------------------------------------------------
   //delete Book onclick
 
   $("body").on("click", ".Dele", function () {
 
     var idd = this.id.toString().slice(4);
-    var myUrl66= "http://localhost:8080/api/book/delete/" + idd;
+    var myUrl66 = "http://localhost:8080/api/book/delete/" + idd;
     $.ajax(
       {
         type: "DELETE",
@@ -175,23 +185,26 @@ $(document).ready(function () {
           if (xhr.status == 500) {
             alert("Can't delete this author, because books exist to this author ");
           }
+          if(xhr.status == 401) {
+            logoutFun();
+          }
         }
       });
     location.reload();
 
   });
 
-//----------------------------------------------------------------------------
-//method for filling categories
+  //----------------------------------------------------------------------------
+  //method for filling categories
 
   var cat;
   $("#collapseExample2").on("change", ".cate ", function () {
-      
-      var cate=this.id.toString().slice(4)
-      var isChecked = $('#cate'+cate).is(":checked") ? true : false;
-      if(isChecked){
-        cat=cate;
-      }
+
+    var cate = this.id.toString().slice(4)
+    var isChecked = $('#cate' + cate).is(":checked") ? true : false;
+    if (isChecked) {
+      cat = cate;
+    }
   })
 
   //----------------------------------------------------------------------
@@ -200,12 +213,12 @@ $(document).ready(function () {
   $("#collapseExample1").on("change", ".bookbut", function () {
     var aid = this.id.toString().slice(4);
     var isChecked = $('#auth' + aid).is(":checked") ? true : false;
-    if(isChecked){
-      auth=aid;
+    if (isChecked) {
+      auth = aid;
     }
   });
 
-  
+
   var respbook;
   $("body").on("click", "#submIT", function () {
     var title1 = $("#onomasia").val();
@@ -214,11 +227,11 @@ $(document).ready(function () {
     var desc1 = $("#desc").val();
     var repr = $("#rg").val();
     var stoQ = $("#st").val();
-    var totR= $("#tr").val();
-  
+    var totR = $("#tr").val();
+
     alert(auth);
-    
-    var myUrl94 = "http://localhost:8080/api/book/new/"+auth;
+
+    var myUrl94 = "http://localhost:8080/api/book/new/" + auth;
     $.ajax(
       {
         type: "POST",
@@ -234,17 +247,17 @@ $(document).ready(function () {
         data: JSON.stringify({
           title: title1,
           isbn: isbn1,
-          noofpages:numofpage,
-          description:desc1,
-          regularPrice:repr,
-          storeQuantity:stoQ,
-          totalRating:totR
+          noofpages: numofpage,
+          description: desc1,
+          regularPrice: repr,
+          storeQuantity: stoQ,
+          totalRating: totR
         }),
         success: function (response) {
-          respbook=response.id
+          respbook = response.id
           alert(cat);
-          if(cat!=0){
-            var myurl="http://localhost:8080/api/categoriebook/new/categorielist/"+cat;
+          if (cat != 0) {
+            var myurl = "http://localhost:8080/api/categoriebook/new/categorielist/" + cat;
             $.ajax({
               type: "POST",
               url: myUrl94,
@@ -256,21 +269,57 @@ $(document).ready(function () {
                 "Accept": "application/json",
                 "Content-Type": "application/json"
               },
-              data:JSON.stringify({
-                id:respbook
-              })
+              data: JSON.stringify({
+                id: respbook
+              }),
+              error: function(xhr){
+                if(xhr.status == 401) {
+                  logoutFun();
+                }
+              }
 
             })
-              alert("ok");
-            }
-            alert("no ok");
+            // alert("ok");
           }
-          
-
-          // alert("Data passed"+respbook);
+          // alert("no ok");
         }
+
+
+        // alert("Data passed"+respbook);
+      }
     );
-      });
+  });
+  //unauthorized auto logout
+  function logoutFun() {
+    var logoutUrl = "http://localhost:8080/api/home/signout";
+    // var username = localStorage.getItem("username");
+
+    $.ajax({
+      type: "DELETE",
+      url: logoutUrl,
+      dataType: "json",
+      headers: {
+        "Referrer-Policy": "strict-origin-when-cross-origin",
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS, UPDATE",
+        'Authorization': localStorage.getItem("Authorization"),
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      // data: JSON.stringify({
+      //     userName : username
+      // }),
+      success: function () {
+        // alert("See you soon!");
+      },
+      error: function () {
+        alert("Please sign in to proceed!");
+      }
+    });
+    localStorage.removeItem("Authorization");
+    // localStorage.removeItem("username");
+    window.location.href = "Login.html";
+  }
 
 });
 //       }).then (function(){
@@ -304,7 +353,7 @@ $(document).ready(function () {
 //               console.log(data);
 //           }
 //       });
-  
+
 
 
   // jQuery.noConflict(); 
@@ -323,11 +372,11 @@ $(document).ready(function () {
   // success:function(){
   //   alert("you did it");
   // }
- 
+
   // });
   // } 
   // }); 
- 
+
 
 
     // gia to Image 

@@ -31,8 +31,15 @@ public abstract class AbstractDao<PK extends Serializable, T> {
 	}
 
 	public boolean persist(T entity) {
+                boolean result = true;
+                try{
 		getSession().persist(entity);
-                return getSession().isDirty();
+                result = true;
+                } catch (Exception e){
+                    result = false;
+                    System.out.println("Entity could not be persisted");
+                }
+                return result;
 	}
 
 	public void delete(T entity) {

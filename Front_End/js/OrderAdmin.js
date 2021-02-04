@@ -33,6 +33,11 @@ $(document).ready(function () {
                 'Authorization': localStorage.getItem("Authorization"),
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
+            },
+            error: function(xhr){
+                if(xhr.status == 401) {
+                    logoutFun();
+                  }
             }
         }
     ).then(
@@ -99,6 +104,11 @@ $(document).ready(function () {
                         } else {
                             $("#first_div").css("display", "none");
                         }
+                    },
+                    error: function(xhr){
+                        if(xhr.status == 401) {
+                            logoutFun();
+                          }
                     }
                 }
             ).then(function (order) {
@@ -115,6 +125,11 @@ $(document).ready(function () {
                             'Authorization': localStorage.getItem("Authorization"),
                             'Accept': 'application/json',
                             'Content-Type': 'application/json'
+                        },
+                        error: function(xhr){
+                            if(xhr.status == 401) {
+                                logoutFun();
+                              }
                         }
                     }
                 ).then(function (order_details) {
@@ -131,6 +146,11 @@ $(document).ready(function () {
                                     'Authorization': localStorage.getItem("Authorization"),
                                     'Accept': 'application/json',
                                     'Content-Type': 'application/json'
+                                },
+                                error: function(xhr){
+                                    if(xhr.status == 401) {
+                                        logoutFun();
+                                      }
                                 }
                             }
                         ).then(function (book) {
@@ -161,7 +181,7 @@ $(document).ready(function () {
     $("body").on("click", ".minus", function () {
 
         var idd = this.id.toString().slice(6);
-        var quantity = $('#quantity_' + idd ).val();
+        var quantity = $('#quantity_' + idd).val();
 
         if (quantity > 1) {
             $('#quantity_' + idd).val(quantity - 1);
@@ -171,20 +191,20 @@ $(document).ready(function () {
     $("body").on("click", ".plus", function () {
 
         var idd = this.id.toString().slice(5);
-        var quantity = parseInt($('#quantity_' + idd ).val());
-        
+        var quantity = parseInt($('#quantity_' + idd).val());
+
         if (quantity >= 1) {
-            $('#quantity_' + idd ).val(quantity + 1);
+            $('#quantity_' + idd).val(quantity + 1);
         }
 
     });
-    
+
     //UPDATE ORDERED PRODUCT
     $("body").on("click", ".upd", function () {
-        
+
         var idd = this.id.toString().slice(4);
-        var quantity = $('#quantity_' + idd ).val();
-        var oldquantity = $('#oldQuantity_' + idd ).text();
+        var quantity = $('#quantity_' + idd).val();
+        var oldquantity = $('#oldQuantity_' + idd).text();
         if (oldquantity != quantity) {
             var myUrl5 = "http://localhost:8080/api/cart/updatecart/" + idd + "/" + quantity;
             $.ajax(
@@ -206,6 +226,11 @@ $(document).ready(function () {
                     success: function () {
                         alert("Updated");
                     },
+                    error: function(xhr){
+                        if(xhr.status == 401) {
+                            logoutFun();
+                          }
+                    }
                 });
             alert("Updated");
         }
@@ -227,6 +252,11 @@ $(document).ready(function () {
                     "Authorization": localStorage.getItem("Authorization"),
                     "Accept": "application/json",
                     "Content-Type": "application/json"
+                },
+                error: function(xhr){
+                    if(xhr.status == 401) {
+                        logoutFun();
+                      }
                 }
             });
         $("#div_" + idd).remove();
@@ -280,6 +310,11 @@ $(document).ready(function () {
                 },
                 success: function () {
                     alert(quantity + " Books < " + title + " > were added to Order " + cartId);
+                },
+                error: function(xhr){
+                    if(xhr.status == 401) {
+                        logoutFun();
+                      }
                 }
             });
 
@@ -302,6 +337,11 @@ $(document).ready(function () {
                         "Authorization": localStorage.getItem("Authorization"),
                         "Accept": "application/json",
                         "Content-Type": "application/json"
+                    },
+                    error: function(xhr){
+                        if(xhr.status == 401) {
+                            logoutFun();
+                          }
                     }
                 });
             alert("Order (ID : " + del_id + " successfully deleted!) ");
@@ -310,6 +350,37 @@ $(document).ready(function () {
         }
     });
 
+    //unauthorized auto logout
+    function logoutFun() {
+        var logoutUrl = "http://localhost:8080/api/home/signout";
+        // var username = localStorage.getItem("username");
+
+        $.ajax({
+            type: "DELETE",
+            url: logoutUrl,
+            dataType: "json",
+            headers: {
+                "Referrer-Policy": "strict-origin-when-cross-origin",
+                "Access-Control-Allow-Origin": "*",
+                "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS, UPDATE",
+                'Authorization': localStorage.getItem("Authorization"),
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            // data: JSON.stringify({
+            //     userName : username
+            // }),
+            success: function () {
+                // alert("See you soon!");
+            },
+            error: function () {
+                alert("Please sign in to proceed!");
+            }
+        });
+        localStorage.removeItem("Authorization");
+        // localStorage.removeItem("username");
+        window.location.href = "Login.html";
+    }
 
 });
 

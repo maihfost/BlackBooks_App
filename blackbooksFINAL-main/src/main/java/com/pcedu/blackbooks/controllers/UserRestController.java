@@ -2,6 +2,7 @@ package com.pcedu.blackbooks.controllers;
 
 import com.pcedu.blackbooks.entities.User;
 import com.pcedu.blackbooks.entities.dto.UserDTO;
+import com.pcedu.blackbooks.services.UserDetailsImpl;
 import com.pcedu.blackbooks.services.interfaces.IReviewService;
 import com.pcedu.blackbooks.services.interfaces.IRoleService;
 import com.pcedu.blackbooks.services.interfaces.IShoppingCartService;
@@ -12,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -66,10 +68,12 @@ public class UserRestController {
     }
     
     @CrossOrigin
-    @GetMapping("/username/{userName}")
+    @GetMapping("/username")
     @PreAuthorize("hasAuthority('user')")
-    public UserDTO showUserByUserName(@PathVariable String userName) {
-        return (userService.findByUserNameDTO(userName));
+    public UserDTO showUserByUserName() {
+        UserDetailsImpl userDetails = (UserDetailsImpl) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        System.out.println("Id" + userDetails.getId());
+        return (userService.findByIdDTO(userDetails.getId()));
     }
     
     @CrossOrigin
@@ -106,21 +110,24 @@ public class UserRestController {
     public UserDTO showUserByShoppingCart(@PathVariable int cartId){
         return(userService.findByOrder(shoppingCartService.findById(cartId)));
     }
- 
+    
     @Transactional 
     @CrossOrigin
     @PutMapping("/update")
     @PreAuthorize("hasAuthority('user')")
     public ResponseEntity updateUser(@RequestBody User user){
-        User tempUser = updateCheck(user, userService.findById(user.getId()));
-        if(userService.update(tempUser)) return (new ResponseEntity(HttpStatus.ACCEPTED));
+        UserDetailsImpl userDetails = (UserDetailsImpl) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User tempUser = updateCheck(user, userService.findById(userDetails.getId()));
+        
+        if(userService.update(tempUser))  return (new ResponseEntity(HttpStatus.ACCEPTED));
         return (new ResponseEntity(HttpStatus.BAD_REQUEST));
     }
     
-    @DeleteMapping("/delete/{username}")
+    @DeleteMapping("/delete")
     @PreAuthorize("hasAuthority('user')")
-    public ResponseEntity deleteUser(@PathVariable String username){
-        User tempUser = userService.findByUserName(username);
+    public ResponseEntity deleteUser(){
+        User tempUser = userService.findByUserName(SecurityContextHolder.getContext().getAuthentication().getName());
+
         if(tempUser != null){
             userService.delete(tempUser);
             return (new ResponseEntity(HttpStatus.ACCEPTED));
@@ -132,7 +139,7 @@ public class UserRestController {
         if(user.getActive() != null) tempUser.setActive(user.getActive());
         if(user.getEmail() != null) tempUser.setEmail(user.getEmail());
         if(user.getUserName() != null) tempUser.setUserName(user.getUserName());
-        if(user.getPassword() != null) tempUser.setPassword(encoder.encode(user.getPassword()));
+        //if(user.getPassword() != null) tempUser.setPassword(encoder.encode(user.getPassword()));
         if(user.getFirstName() != null) tempUser.setFirstName(user.getFirstName());
         if(user.getLastName() != null) tempUser.setLastName(user.getLastName());
         if(user.getDateofbirth() != null) tempUser.setDateofbirth(user.getDateofbirth());
