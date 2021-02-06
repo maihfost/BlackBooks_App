@@ -177,18 +177,15 @@ $(document).ready(function () {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
-      // data: JSON.stringify({
-      //     userName : username
-      // }),
       success: function () {
-        // alert("See you soon!");
       },
       error: function () {
         alert("Please sign in to proceed!");
       }
     });
     localStorage.removeItem("Authorization");
-    // localStorage.removeItem("username");
+    localStorage.removeItem("isAdmin");
+    localStorage.removeItem("cartId");
     window.location.href = "Login.html";
   }
 });

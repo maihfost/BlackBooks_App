@@ -55,8 +55,8 @@ $(document).ready(function () {
       'Accept': 'application/json',
       'Content-Type': 'application/json'
     },
-    error: function(xhr){
-      if(xhr.status == 401) {
+    error: function (xhr) {
+      if (xhr.status == 401) {
         logoutFun();
       }
     }
@@ -148,8 +148,8 @@ $(document).ready(function () {
         success: function () {
           // window.location.reload();
         },
-        error: function(xhr){
-          if(xhr.status == 401) {
+        error: function (xhr) {
+          if (xhr.status == 401) {
             logoutFun();
           }
         }
@@ -185,7 +185,7 @@ $(document).ready(function () {
           if (xhr.status == 500) {
             alert("Can't delete this author, because books exist to this author ");
           }
-          if(xhr.status == 401) {
+          if (xhr.status == 401) {
             logoutFun();
           }
         }
@@ -228,9 +228,11 @@ $(document).ready(function () {
     var repr = $("#rg").val();
     var stoQ = $("#st").val();
     var totR = $("#tr").val();
+    var imag = $("#upload").val();
+    imag = "Books_Images/" + imag.toString().slice(12);
 
-    alert(auth);
-
+    $('#eik').attr('src', imag);
+    alert(imag);
     var myUrl94 = "http://localhost:8080/api/book/new/" + auth;
     $.ajax(
       {
@@ -251,7 +253,8 @@ $(document).ready(function () {
           description: desc1,
           regularPrice: repr,
           storeQuantity: stoQ,
-          totalRating: totR
+          totalRating: totR,
+          image2: imag
         }),
         success: function (response) {
           respbook = response.id
@@ -272,8 +275,8 @@ $(document).ready(function () {
               data: JSON.stringify({
                 id: respbook
               }),
-              error: function(xhr){
-                if(xhr.status == 401) {
+              error: function (xhr) {
+                if (xhr.status == 401) {
                   logoutFun();
                 }
               }
@@ -306,22 +309,21 @@ $(document).ready(function () {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
-      // data: JSON.stringify({
-      //     userName : username
-      // }),
       success: function () {
-        // alert("See you soon!");
       },
       error: function () {
         alert("Please sign in to proceed!");
       }
     });
     localStorage.removeItem("Authorization");
-    // localStorage.removeItem("username");
+    localStorage.removeItem("isAdmin");
+    localStorage.removeItem("cartId");
     window.location.href = "Login.html";
   }
 
 });
+
+
 //       }).then (function(){
 //         var data = new FormData("form[name='file']");
 //       //   jQuery.each(jQuery('#upload')[0].files, function(i, file) {

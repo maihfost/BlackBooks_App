@@ -13,8 +13,8 @@ $(document).ready(function () {
       'Accept': 'application/json',
       'Content-Type': 'application/json'
     },
-    error: function(xhr){
-      if(xhr.status == 401) {
+    error: function (xhr) {
+      if (xhr.status == 401) {
         logoutFun();
       }
     }
@@ -53,9 +53,9 @@ $(document).ready(function () {
               <button name="reset" type="reset" id="del_'+ response.id + '" class="Del btn btn-danger"></i>\
                   Delete</button>\
               ')
-        }, 
-        error: function(xhr){
-          if(xhr.status == 401) {
+        },
+        error: function (xhr) {
+          if (xhr.status == 401) {
             logoutFun();
           }
         }
@@ -93,8 +93,8 @@ $(document).ready(function () {
         success: function () {
           // window.location.reload();
         },
-        error: function(xhr){
-          if(xhr.status == 401) {
+        error: function (xhr) {
+          if (xhr.status == 401) {
             logoutFun();
           }
         }
@@ -129,7 +129,7 @@ $(document).ready(function () {
           if (xhr.status == 500) {
             alert("Can't delete this author, because books exist to this author ");
           }
-          if(xhr.status == 401) {
+          if (xhr.status == 401) {
             logoutFun();
           }
         }
@@ -167,8 +167,8 @@ $(document).ready(function () {
         success: function () {
           alert("Data passed");
         },
-        error: function(xhr){
-          if(xhr.status == 401) {
+        error: function (xhr) {
+          if (xhr.status == 401) {
             logoutFun();
           }
         }
@@ -193,11 +193,7 @@ $(document).ready(function () {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
-      // data: JSON.stringify({
-      //     userName : username
-      // }),
       success: function () {
-        // alert("See you soon!");
       },
       error: function (xhr) {
         if (xhr.status == 401) {
@@ -207,7 +203,8 @@ $(document).ready(function () {
       }
     });
     localStorage.removeItem("Authorization");
-    // localStorage.removeItem("username");
+    localStorage.removeItem("isAdmin");
+    localStorage.removeItem("cartId");
     window.location.href = "Login.html";
   }
 

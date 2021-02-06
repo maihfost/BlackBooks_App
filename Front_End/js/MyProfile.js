@@ -14,8 +14,8 @@ $(document).ready(function () {
       'Accept': 'application/json',
       'Content-Type': 'application/json'
     },
-    error: function(xhr){
-      if(xhr.status == 401) {
+    error: function (xhr) {
+      if (xhr.status == 401) {
         logoutFun();
       }
     }
@@ -74,8 +74,8 @@ $(document).ready(function () {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
           },
-          error: function(xhr){
-            if(xhr.status == 401) {
+          error: function (xhr) {
+            if (xhr.status == 401) {
               logoutFun();
             }
           }
@@ -102,10 +102,6 @@ $(document).ready(function () {
   $("#check2").click(function () {
 
     var cart_id = $("#sel_ord").val();
-    // cart_id = valu.slice(0, valu.indexOf('_'));
-    // alert(cart_id);
-    // var option_index = valu.slice(valu.lastIndexOf('_')+1);
-    // alert(option_index);
     if (cart_id == "") {
       alert("Select an order ID to execute the payment");
     } else {
@@ -125,8 +121,8 @@ $(document).ready(function () {
           data: JSON.stringify(
             cart_id
           ),
-          error: function(xhr){
-            if(xhr.status == 401) {
+          error: function (xhr) {
+            if (xhr.status == 401) {
               logoutFun();
             }
           }
@@ -184,7 +180,7 @@ $(document).ready(function () {
         }
       },
       error: function () {
-        if(xhr.status == 401) {
+        if (xhr.status == 401) {
           logoutFun();
         }
       }
@@ -210,7 +206,7 @@ $(document).ready(function () {
         alert("Account deleted successfully!");
       },
       error: function () {
-        if(xhr.status == 401) {
+        if (xhr.status == 401) {
           logoutFun();
         }
       }
@@ -266,7 +262,6 @@ $(document).ready(function () {
   //unauthorized auto logout
   function logoutFun() {
     var logoutUrl = "http://localhost:8080/api/home/signout";
-    // var username = localStorage.getItem("username");
 
     $.ajax({
       type: "DELETE",
@@ -280,18 +275,15 @@ $(document).ready(function () {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
-      // data: JSON.stringify({
-      //     userName : username
-      // }),
       success: function () {
-        // alert("See you soon!");
       },
       error: function () {
         alert("Please sign in to proceed!");
       }
     });
     localStorage.removeItem("Authorization");
-    // localStorage.removeItem("username");
+    localStorage.removeItem("isAdmin");
+    localStorage.removeItem("cartId");
     window.location.href = "Login.html";
   }
 });

@@ -128,7 +128,6 @@ $(document).ready(function () {
         $("#logout_btn").hide();
         $("#myProfile").hide();
         $("#cartImg").attr("href", "Login.html");
-        //Na prostethi to addTocart kai oles oi selides pou den mporei na mpei an den kanei login
     }
 
     //Admin button show/hide
@@ -138,41 +137,6 @@ $(document).ready(function () {
     else {
         $("#navbarDropdown").hide();
     }
-
-
-    // //auto logout after session timeout
-    // function logoutFun(){
-    //     var logoutUrl= "http://localhost:8080/api/home/signout";
-
-    //     $.ajax({
-    //         type:"DELETE",
-    //         url:logoutUrl,
-    //         dataType: "json",
-    //         headers: {
-    //                 "Referrer-Policy": "strict-origin-when-cross-origin",
-    //                 "Access-Control-Allow-Origin": "*",
-    //                 "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS, UPDATE",
-    //                 'Authorization' : localStorage.getItem("Authorization") ,
-    //                 'Accept': 'application/json',
-    //                 'Content-Type': 'application/json' },
-    //         data: JSON.stringify({
-    //             userName : username
-    //         }),
-    //         success:function(){
-    //             alert("See you soon!");
-    //         },
-    //         error: function(){
-    //             alert("You'll stay logged in forever!");
-    //         }
-    //     });
-    //     localStorage.removeItem("Authorization");
-    //     window.location.href = "Login.html";
-    // }
-
-    //warning 5 minutes before timeout
-    // function warning(){
-    //     alert("In 5 minutes you will get logged out automatically!!");
-    // }
 
     //Contact Submit Button
     $("#contac").click(function () {

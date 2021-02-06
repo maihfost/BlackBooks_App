@@ -17,10 +17,10 @@ $(document).ready(function () {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             },
-            error: function(xhr){
-                if(xhr.status == 401) {
+            error: function (xhr) {
+                if (xhr.status == 401) {
                     logoutFun();
-                  }
+                }
             }
         }
     ).then(function (order_details) {
@@ -38,17 +38,17 @@ $(document).ready(function () {
                         'Accept': 'application/json',
                         'Content-Type': 'application/json'
                     },
-                    error: function(xhr){
-                        if(xhr.status == 401) {
+                    error: function (xhr) {
+                        if (xhr.status == 401) {
                             logoutFun();
-                          }
+                        }
                     }
                 }
             ).then(function (book) {
                 $("#books").append('\
                                 <div id="div_'+ order_detail.id + '" class="row dtk">\
                                     <div class="col-12 col-sm-12 col-md-2 text-center ">\
-                                        <img class="img-responsive" src="data:image/png;base64,' + book.image + '" alt="prewiew" width="80" height="100">\
+                                        <img class="img-responsive" src="' + book.image2 + '" alt="prewiew" width="80" height="100">\
                                     </div>\
                                     \
                                     <div class="col-12 text-sm-center col-sm-12 col-md-6 stil " >\
@@ -93,10 +93,10 @@ $(document).ready(function () {
                             'Accept': 'application/json',
                             'Content-Type': 'application/json'
                         },
-                        error: function(xhr){
-                            if(xhr.status == 401) {
+                        error: function (xhr) {
+                            if (xhr.status == 401) {
                                 logoutFun();
-                              }
+                            }
                         }
                     }
                 ).then(function (order) {
@@ -129,7 +129,7 @@ $(document).ready(function () {
                     if (xhr.status == 406) {
                         alert("Your amount is not enough to place an order!");
                     }
-                    if(xhr.status == 401) {
+                    if (xhr.status == 401) {
                         logoutFun();
                     }
                 }
@@ -159,16 +159,16 @@ $(document).ready(function () {
                 data: JSON.stringify(
                     cart_id
                 ),
-                error: function(xhr){
-                    if(xhr.status == 401) {
+                error: function (xhr) {
+                    if (xhr.status == 401) {
                         logoutFun();
-                      }
+                    }
                 }
             }).then(function (books) {
                 alert("Success Payment! Click to the link above to download your books");
                 $("#im_d").append('<p id="cl">Click to the above links to download your books!</p>')
                 $.each(books, function (i, book) {
-                    $("#im_d").append('<a href = "data:image/png;base64,' + book.image + '" id="download" download> |  ' + book.title + '  |</a>');
+                    $("#im_d").append('<a href = "' + book.image2 + '" id="download" download> |  ' + book.title + '  |</a>');
                     //Click here to Download your Books!
                 });
                 $("#tp").css("display", "none");
@@ -176,7 +176,6 @@ $(document).ready(function () {
                 $("#check").css("display", "none");
                 $("#check2").css("display", "none");
             });
-        //cart_id=0;
     });
 
     //UPDATE(+/- QUANTITY)/DELETE ordered product----------------------
@@ -226,10 +225,10 @@ $(document).ready(function () {
                         quantity: quantity
 
                     }),
-                    error: function(xhr){
-                        if(xhr.status == 401) {
+                    error: function (xhr) {
+                        if (xhr.status == 401) {
                             logoutFun();
-                          }
+                        }
                     }
                 });
             alert("Updated");
@@ -255,10 +254,10 @@ $(document).ready(function () {
                     "Accept": "application/json",
                     "Content-Type": "application/json"
                 },
-                error: function(xhr){
-                    if(xhr.status == 401) {
+                error: function (xhr) {
+                    if (xhr.status == 401) {
                         logoutFun();
-                      }
+                    }
                 }
             });
 
@@ -273,7 +272,6 @@ $(document).ready(function () {
     //unauthorized auto logout
     function logoutFun() {
         var logoutUrl = "http://localhost:8080/api/home/signout";
-        // var username = localStorage.getItem("username");
 
         $.ajax({
             type: "DELETE",
@@ -287,18 +285,15 @@ $(document).ready(function () {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             },
-            // data: JSON.stringify({
-            //     userName : username
-            // }),
             success: function () {
-                // alert("See you soon!");
             },
             error: function () {
                 alert("Please sign in to proceed!");
             }
         });
         localStorage.removeItem("Authorization");
-        // localStorage.removeItem("username");
+        localStorage.removeItem("isAdmin");
+        localStorage.removeItem("cartId");
         window.location.href = "Login.html";
     }
 

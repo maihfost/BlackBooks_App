@@ -53,7 +53,7 @@ $(document).ready(function () {
     //get book details
     $.ajax({ url: myUrl }).then(
         function (book, status) {
-            $('.col-lg-3 img').attr('src', `data:image/png;base64,${book.image}`);
+            $('.col-lg-3 img').attr('src', book.image2);
             $(".titlos").append('' + book.title + '');
             $(".card-text").append('' + book.description + '');
             $(".money").append('' + book.regularPrice.toFixed(2) + '&euro;');
@@ -125,7 +125,7 @@ $(document).ready(function () {
 
     //send review
     $(".reviews").on("click", "#submit", function () {
-        var revUrl = "http://localhost:8080/api/review/new/" + fbook ;
+        var revUrl = "http://localhost:8080/api/review/new/" + fbook;
         var comment = $("#comment").val();
         if (comment != null) {
             $.ajax({
@@ -161,7 +161,6 @@ $(document).ready(function () {
     //unauthorized auto logout
     function logoutFun() {
         var logoutUrl = "http://localhost:8080/api/home/signout";
-        // var username = localStorage.getItem("username");
 
         $.ajax({
             type: "DELETE",
@@ -175,18 +174,15 @@ $(document).ready(function () {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             },
-            // data: JSON.stringify({
-            //     userName : username
-            // }),
             success: function () {
-                // alert("See you soon!");
             },
             error: function () {
                 alert("Please sign in to proceed!");
             }
         });
         localStorage.removeItem("Authorization");
-        // localStorage.removeItem("username");
+        localStorage.removeItem("isAdmin");
+        localStorage.removeItem("cartId");
         window.location.href = "Login.html";
     }
 })
