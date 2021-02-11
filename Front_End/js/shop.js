@@ -264,7 +264,7 @@ $(document).ready(function () {
         $("#div_" + idd).remove();
         setTimeout(function () {
             window.location.reload();
-        }, 1000);
+        }, 2000);
 
 
     });
